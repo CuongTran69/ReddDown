@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reddit Video Extractor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      width: 350px;
+      padding: 16px;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #1a1a1b;
+      color: #d7dadc;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #ff4500;
+      text-align: center;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid #343536;
+      border-radius: 8px;
+      background-color: #272729;
+      color: #d7dadc;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #ff4500;
+      box-shadow: 0 0 0 2px rgba(255, 69, 0, 0.2);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    #extractBtn {
+      background-color: #ff4500;
+      color: white;
+    }
+
+    #extractBtn:hover {
+      background-color: #dc3d00;
+    }
+
+    #copyBtn {
+      background-color: #0079d3;
+      color: white;
+    }
+
+    #copyBtn:hover {
+      background-color: #005fa3;
+    }
+
+    #downloadBtn {
+      background-color: #24a0ed;
+      color: white;
+    }
+
+    #downloadBtn:hover {
+      background-color: #1e86c8;
+    }
+
+    #downloadBtn.downloading {
+      background-color: #2ea043;
+      pointer-events: none;
+    }
+
+    #downloadBtn.completed {
+      background-color: #238636;
+    }
+
+    #result {
+      padding: 10px;
+      background-color: #272729;
+      border-radius: 8px;
+      font-size: 13px;
+      word-break: break-all;
+      max-height: 60px;
+      overflow-y: auto;
+      border: 1px solid #343536;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #ffffff;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      display: inline-block;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #272729;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #4a4a4a;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Reddit Video Extractor</div>
+    <div class="input-group">
+      <input type="text" id="urlInput" placeholder="Paste Reddit post URL here">
+    </div>
+    <button id="extractBtn">Extract Video URL</button>
+    <div id="result" class="hidden"></div>
+    <div class="button-group">
+      <button id="copyBtn" class="hidden">
+        <span class="button-text">Copy URL</span>
+      </button>
+      <button id="downloadBtn" class="hidden">
+        <span class="spinner hidden"></span>
+        <span class="button-text">Download Video</span>
+      </button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
